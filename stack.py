@@ -1,44 +1,36 @@
 def push(stack, n, element):
     if is_full(stack, n):
         print("Stack overflow")
+        return
     else:
         stack.append(element)
         print(f"{element} pushed to the stack")
-        display(stack)
+        return
 
 
-def pop():
+def pop(stack):
     if is_empty(stack):
         print("Stack underflow")
+        return
     else:
         stack.pop()
         print("Popped")
-        display(stack)
+        return
 
 
 def is_full(stack, n):
-    if len(stack) >= n:
-        print("Stack is full")
-        return True
-    else:
-        print("Stack is not full")
-        return False
+    return len(stack) == n
 
 
 def is_empty(stack):
-    if not stack:
-        print("Stack is empty")
-        return True
-    else:
-        print("Stack is not empty")
-        return False
+    return len(stack) == 0
 
 
 def top(stack):
     if is_empty(stack):
         print("Stack underflow.")
     else:
-        print(f"{len(stack)-1}")
+        print(f"Top element is {stack[-1]}")
 
 
 def display(stack):
@@ -62,9 +54,11 @@ def main():
         print("3. Is empty")
         print("4. Is full")
         print("5. Top")
-        print("6. Exit")
+        print("6. Display")
+        print("7. Exit")
 
         choice = int(input("Enter your choice:"))
+        clear_screen()
         if choice == 1:
             element = int(input("Enter element to insert:"))
             push(stack, n, element)
@@ -73,15 +67,18 @@ def main():
             pop(stack)
 
         elif choice == 3:
-            is_empty(stack)
+            print("Stack is empty" if is_empty(stack) else "Stack is not empty")
 
         elif choice == 4:
-            is_full(stack, n)
+            print("Stack is full" if is_full(stack, n) else "Stack is not full")
 
         elif choice == 5:
             top(stack)
 
         elif choice == 6:
+            display(stack)
+
+        elif choice == 7:
             print("Exiting..")
             break
         else:
