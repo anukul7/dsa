@@ -9,13 +9,7 @@ def enqueue(queue, element, n):
 
 
 def dequeue(queue):
-    if is_empty(queue):
-        print("Queue underflow")
-        return
-    else:
-        queue.pop()
-        print(f"Element dequeued")
-        return
+    return queue.pop()
 
 
 def is_empty(queue):
@@ -27,12 +21,7 @@ def is_full(queue, n):
 
 
 def peek(queue):
-    if is_empty(stack):
-        print("Queue underflow.")
-        return
-    else:
-        print(f"Top element is {queue[-1]}")
-        return
+    return queue[-1]
 
 
 def display(queue):
@@ -66,7 +55,11 @@ def main():
             enqueue(queue, element, n)
 
         elif choice == 2:
-            dequeue(queue)
+            print(
+                "Queue underflow"
+                if is_empty(queue)
+                else f" {dequeue(queue)} Element dequeued"
+            )
 
         elif choice == 3:
             print("Queue is empty" if is_empty(queue) else "Queue is not empty")
@@ -75,7 +68,7 @@ def main():
             print("Queue is full" if is_full(queue, n) else "Queue is not full")
 
         elif choice == 5:
-            peek(queue)
+            print("Queue underflow" if is_empty(queue) else {peek(queue)})
 
         elif choice == 6:
             display(queue)
